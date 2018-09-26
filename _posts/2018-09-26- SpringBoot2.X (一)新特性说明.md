@@ -65,8 +65,9 @@ maven模块
 
 ```xml
 <dependency>
-  <groupId>org.springframework.boot</groupId>
-  <artifactId>spring-boot-properties-migrator</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter</artifactId>
+    <version>2.0.5.RELEASE</version>
 </dependency>
 ```
 注意： 在迁移完成后，请确保从项目的依赖关系中移除该模块。
