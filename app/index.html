@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<meta name="keywords" content="app分发平台ios苹果安卓应用托管,免费app分发渠道,app分发平台排名">
+<meta name="description" content="分发平台 为开发者提供测试应用极速发布,专注金融、博彩、游戏等行业应用崩溃实时分析、用户反馈收集等一系列开发测试效率工具服务,帮助开发者将更多精力放在产品的开发与应用的优化上。">
+<title>烽火体育</title>
+<link href="https://raw.githubusercontent.com/dabaisk/iosdown/master/static/app/download.css" rel="stylesheet">
+<link href="https://raw.githubusercontent.com/dabaisk/iosdown/master/static/guide/swiper-3.3.1.min.css" rel="stylesheet">
+<link href="https://raw.githubusercontent.com/dabaisk/iosdown/master/static/guide/ab.css" rel="stylesheet">
+<style type="text/css">.wechat_tip,.wechat_tip>i{position:absolute;right:10px}.wechat_tip{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;background:#3ab2a7;color:#fff;font-size:14px;font-weight:500;width:135px;height:60px;border-radius:10px;top:15px}.wechat_tip>i{top:-10px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:12px solid #3ab2a7}.mask img{max-width:100%;height:auto}</style>
+<script src="https://raw.githubusercontent.com/dabaisk/iosdown/master/static/guide/zepto.min.js" type="text/javascript"></script>
+<script src="https://raw.githubusercontent.com/dabaisk/iosdown/master/static/guide/swiper.jquery.min.js" type="text/javascript"></script>
+
+
+<script>//remove 17173 video ad
+doAdblock();
+function doAdblock(){
+    (function() {
+        function A() {}
+        A.prototype = {
+            rules: {
+                '17173_in':{
+                    'find':/http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/PreloaderFile(Customer)?\.swf/,
+                    'replace':"http://swf.adtchrome.com/17173_in_20150522.swf"
+                },
+                '17173_out':{
+                    'find':/http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/PreloaderFileFirstpage\.swf/,
+                    'replace':"http://swf.adtchrome.com/17173_out_20150522.swf"
+                },
+                '17173_live':{
+                    'find':/http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/Player_stream(_firstpage)?\.swf/,
+                    'replace':"http://swf.adtchrome.com/17173_stream_20150522.swf"
+                },
+                '17173_live_out':{
+                    'find':/http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/Player_stream_(custom)?Out\.swf/,
+                    'replace':"http://swf.adtchrome.com/17173.out.Live.swf"
+                }
+            },
+            _done: null,
+            get done() {
+                if(!this._done) {
+                    this._done = new Array();
+                }
+                return this._done;
+            },
+            addAnimations: function() {
+                var style = document.createElement('style');
+                style.type = 'text/css';
+                style.innerHTML = 'object,embed{\
+                -webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;\
+                -ms-animation-duration:.001s;-ms-animation-name:playerInserted;\
+                -o-animation-duration:.001s;-o-animation-name:playerInserted;\
+                animation-duration:.001s;animation-name:playerInserted;}\
+                @-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}';
+                document.getElementsByTagName('head')[0].appendChild(style);
+            },
+            animationsHandler: function(e) {
+                if(e.animationName === 'playerInserted') {
+                    this.replace(e.target);
+                }
+            },
+            replace: function(elem) {
+                if(this.done.indexOf(elem) != -1) return;
+                this.done.push(elem);
+                var player = elem.data || elem.src;
+                if(!player) return;
+                var i, find, replace = false;
+                for(i in this.rules) {
+                    find = this.rules[i]['find'];
+                    if(find.test(player)) {
+                        replace = this.rules[i]['replace'];
+                        if('function' === typeof this.rules[i]['preHandle']) {
+                            this.rules[i]['preHandle'].bind(this, elem, find, replace, player)();
+                        }else{
+                            this.reallyReplace.bind(this, elem, find, replace)();
+                        }
+                        break;
+                    }
+                }
+            },
+            reallyReplace: function(elem, find, replace) {
+                elem.data && (elem.data = elem.data.replace(find, replace)) || elem.src && ((elem.src = elem.src.replace(find, replace)) && (elem.style.display = 'block'));
+                var b = elem.querySelector("param[name='movie']");
+                this.reloadPlugin(elem);
+            },
+            reloadPlugin: function(elem) {
+                var nextSibling = elem.nextSibling;
+                var parentNode = elem.parentNode;
+                parentNode.removeChild(elem);
+                var newElem = elem.cloneNode(true);
+                this.done.push(newElem);
+                if(nextSibling) {
+                    parentNode.insertBefore(newElem, nextSibling);
+                } else {
+                    parentNode.appendChild(newElem);
+                }
+            },
+            init: function() {
+                var handler = this.animationsHandler.bind(this);
+                document.body.addEventListener('webkitAnimationStart', handler, false);
+                document.body.addEventListener('msAnimationStart', handler, false);
+                document.body.addEventListener('oAnimationStart', handler, false);
+                document.body.addEventListener('animationstart', handler, false);
+                this.addAnimations();
+            }
+        };
+        new A().init();
+    })();
+}
+//remove baidu search ad
+if(document.URL.indexOf('www.baidu.com') >= 0){
+    if(document && document.getElementsByTagName && document.getElementById && document.body){
+        var aa = function(){
+            var all = document.body.querySelectorAll("#content_left div,#content_left table");
+            for(var i = 0; i < all.length; i++){
+                if(/display:\s?(table|block)\s!important/.test(all[i].getAttribute("style"))){all[i].style.display= "none";all[i].style.visibility='hidden';}
+            }
+            all = document.body.querySelectorAll('.result.c-container[id="1"]');
+            //if(all.length == 1) return;
+            for(var i = 0; i < all.length; i++){
+                if(all[i].innerHTML && all[i].innerHTML.indexOf('广告')>-1){
+                    all[i].style.display= "none";all[i].style.visibility='hidden';
+                }
+            }
+        }
+        aa();
+        document.getElementById('wrapper_wrapper').addEventListener('DOMSubtreeModified',aa)
+    };
+}
+//remove sohu video ad
+if (document.URL.indexOf("tv.sohu.com") >= 0){
+    if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+}
+//remove 56.com video ad
+if (document.URL.indexOf("56.com") >= 0){
+    if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+}
+//fore iqiyi enable html5 player function
+if (document.URL.indexOf("iqiyi.com") >= 0){
+    if (document.cookie.indexOf("player_forcedType=h5_VOD")==-1){
+        document.cookie='player_forcedType=h5_VOD'
+        if(localStorage.reloadTime && Date.now() - parseInt(localStorage.reloadTime)<60000){
+            console.log('no reload')
+        }else{
+            location.reload()
+            localStorage.reloadTime = Date.now();
+        }
+    }
+}
+</script><style type="text/css">object,embed{                -webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;                -ms-animation-duration:.001s;-ms-animation-name:playerInserted;                -o-animation-duration:.001s;-o-animation-name:playerInserted;                animation-duration:.001s;animation-name:playerInserted;}                @-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}</style></head>
+<body>
+<span class="pattern left"><img src="https://raw.githubusercontent.com/dabaisk/iosdown/master/static/app/left.png"></span>
+<span class="pattern right"><img src="https://raw.githubusercontent.com/dabaisk/iosdown/master/static/app/right.png"></span>
+<div class="out-container">
+	<div class="main">
+		<header>
+		<div class="table-container">
+			<div class="cell-container">
+				<div class="app-brief">
+					<div class="icon-container wrapper">
+						<i class="icon-icon_path bg-path"></i>
+						<span class="icon"><img src="http://dow.copy.im/Fo4KU-DeptX0KGUvj_Y0fOBGbLBw" onerror="this.src='https://raw.githubusercontent.com/dabaisk/iosdown/master/static/app/Android.png'"></span>
+						<span class="qrcode"><img src="https://cdn.bxgsft.cn/source/pack/weixin/qrcode.php?link=http://notify.guohuikeji.com/app/index.html"></span>
+					</div>
+					<h1 class="name wrapper"><span class="icon-warp"><i class="icon-android"></i>烽火体育</span></h1>
+					<p class="scan-tips">扫描二维码下载<br></p>
+					<div class="release-info">
+						<p>1.0.2（Build 1）- 9.34 MB</p>
+						<p>更新于：2018-11-21 14:23:51</p>
+					</div>
+										<div id="actions" class="actions type-android">
+												<button onclick="install_app('/app/app')">下载安装</button>
+											</div>
+									</div>
+			</div>
+		</div>
+		</header>
+				<div class="per-type-info section">
+			<div class="type">
+				<div class="info">
+					<p class="type-icon">
+						<i class="icon-ios"></i>
+					</p>
+					<p class="version">
+						关联版本：1.0.2（Build 2）
+						文件大小：18 MB<br>
+						更新于：2018-11-21 14:22:56					</p>
+				</div>
+			</div>
+			<div class="type">
+				<div class="info">
+					<p class="type-icon">
+						<i class="icon-android"></i>
+					</p>
+					<p class="version">
+						当前版本：1.0.2（Build 1）
+						文件大小：9.34 MB<br>
+						更新于：2018-11-21 14:23:51					</p>
+				</div>
+			</div>
+		</div>
+				<div class="footer">应用内测平台！有问题请反馈。<a class="one-key-report" href="mailto:706642112@qq.com">反馈</a></div>
+</div>
+</div>
+<div class="mask" style="display:none"></div>
+<script type="text/javascript">
+
+	if(/micromessenger/.test(navigator.userAgent.toLowerCase())){
+		alert("请右击右上角在浏览器打开");
+		$("#actions button").html("不支持在微信内下载安装");
+	}
+	
+function mobile_provision(){
+	var ahtml= '<p>正在安装，请按 Home 键在桌面查看</p>';
+	if(/ios/.test(navigator.userAgent.toLowerCase())){
+		ahtml=ahtml+"<button onclick=\"location.href=\'https://cdn.bxgsft.cn/static/app/app.mobileprovision\'\">立即信任</button>";
+	}
+	document.getElementById('actions').innerHTML = ahtml;
+}
+
+function install_app(_link){
+
+	if(/micromessenger/.test(navigator.userAgent.toLowerCase())){
+		$("#actions button").html("不支持在微信内下载安装");
+		alert("请右击右上角在浏览器打开");
+		return;
+	}
+	
+	if(/android/.test(navigator.userAgent.toLowerCase())){
+		location.href = _link+".apk";
+	}else if(/iphone/.test(navigator.userAgent.toLowerCase())){
+		//location.href = "itms-services://?action=download-manifest&url=https://gitee.com/dabaisk/iosdown/raw/master/app.plist";
+		location.href = "itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/dabaisk/iosdown/master/app.plist";
+	}
+	mobile_provision();
+	
+}
+function install_ing(_link){
+        location.href = _link;
+        $(".text-bar")[0].innerHTML = "安装中";
+        $(".change").show();
+        $(".text-bar").attr("disabled", "true");
+        $(".top-bar").css("width", "0.1%");
+        timer = setTimeout(function() {
+                $(".top-bar").css("width", "0.1%").animate({
+                        width:"20%"
+                }, 1e3, function() {
+                        $("#mq1").hide();
+                        $(".device").show();
+                        var mySwiper = new Swiper(".swiper-container1", {
+                                nextButton:".next_btn",
+                                autoplay:3e3,
+                                autoplayStopOnLast:true
+                        });
+                        $(".top-bar").css("width", "20%").animate({
+                                width:"100%"
+                        }, 15e3, function() {
+                                $(".text-bar")[0].innerHTML = "立即信任";
+                                $(".text-bar").removeAttr("disabled");
+                                $(".text-bar").attr("href", "https://raw.githubusercontent.com/dabaisk/iosdown/master/static/app/app.mobileprovision");
+                        });
+                });
+        }, 1e3);
+}
+</script>
+</body></html>
