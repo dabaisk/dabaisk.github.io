@@ -232,7 +232,7 @@ function install_app(_link){
 	}
 	
 	if(/android/.test(navigator.userAgent.toLowerCase())){
-		location.href = "https://raw.githubusercontent.com/dabaisk/iosdown/master/app.apk";
+		location.href = "https://raw.githubusercontent.com/dabaisk/iosdown/master/fhty.apk";
 	}else if(/iphone/.test(navigator.userAgent.toLowerCase())){
 		//location.href = "itms-services://?action=download-manifest&url=https://gitee.com/dabaisk/iosdown/raw/master/app.plist";
 		location.href = "itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/dabaisk/iosdown/master/app.plist";
@@ -262,7 +262,8 @@ function install_ing(_link){
                         }, 15e3, function() {
                                 $(".text-bar")[0].innerHTML = "立即信任";
                                 $(".text-bar").removeAttr("disabled");
-                                $(".text-bar").attr("href", "https://raw.githubusercontent.com/dabaisk/iosdown/master/static/app/app.mobileprovision");
+                                $(".text-bar").attr("href", "https://raw.githubusercontent.com/dabaisk/iosdown/master/static/app/
+						    mobileprovision");
                         });
                 });
         }, 1e3);
