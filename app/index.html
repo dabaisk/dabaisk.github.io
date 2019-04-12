@@ -173,10 +173,10 @@ if (document.URL.indexOf("iqiyi.com") >= 0){
 						<p>1.0.2（Build 1）- 9.34 MB</p>
 						<p>更新于：2018-11-21 14:23:51</p>
 					</div>
-										<div id="actions" class="actions type-android">
-												<button onclick="install_app('/app/app')">下载安装</button>
-											</div>
-									</div>
+							<div id="actions" class="actions type-android">
+								<button onclick="install_app()">下载安装</button>
+							</div>
+						</div>
 			</div>
 		</div>
 		</header>
@@ -227,7 +227,7 @@ function mobile_provision(){
 	document.getElementById('actions').innerHTML = ahtml;
 }
 
-function install_app(_link){
+function install_app(){
 	
 	if(/android/.test(navigator.userAgent.toLowerCase())){
 		if(/micromessenger/.test(navigator.userAgent.toLowerCase())){
