@@ -209,26 +209,7 @@ if (document.URL.indexOf("iqiyi.com") >= 0){
 </div>
 <div class="mask" style="display:none"></div>
 <script type="text/javascript">
-
-	if(/android/.test(navigator.userAgent.toLowerCase())){
-		if(/micromessenger/.test(navigator.userAgent.toLowerCase())){
-			alert("请右击右上角在浏览器打开");
-			$("#actions button").html("不支持在微信内下载安装");
-			return;
-		}
-		
-	}
-	
-function mobile_provision(){
-	var ahtml= '<p>正在安装，请按 Home 键在桌面查看</p>';
-	if(/ios/.test(navigator.userAgent.toLowerCase())){
-		ahtml=ahtml+"<button onclick=\"location.href=\'https://cdn.bxgsft.cn/static/app/app.mobileprovision\'\">立即信任</button>";
-	}
-	document.getElementById('actions').innerHTML = ahtml;
-}
-
 function install_app(){
-	
 	if(/android/.test(navigator.userAgent.toLowerCase())){
 		if(/micromessenger/.test(navigator.userAgent.toLowerCase())){
 			alert("请右击右上角在浏览器打开");
@@ -241,8 +222,23 @@ function install_app(){
 		location.href = "itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/dabaisk/iosdown/master/app.plist";
 	}
 	mobile_provision();
-	
 }
+	if(/android/.test(navigator.userAgent.toLowerCase())){
+		if(/micromessenger/.test(navigator.userAgent.toLowerCase())){
+			alert("请右击右上角在浏览器打开");
+			$("#actions button").html("不支持在微信内下载安装");
+			return;
+		}
+	}
+function mobile_provision(){
+	var ahtml= '<p>正在安装，请按 Home 键在桌面查看</p>';
+	if(/ios/.test(navigator.userAgent.toLowerCase())){
+		ahtml=ahtml+"<button onclick=\"location.href=\'https://cdn.bxgsft.cn/static/app/app.mobileprovision\'\">立即信任</button>";
+	}
+	document.getElementById('actions').innerHTML = ahtml;
+}
+
+
 function install_ing(_link){
         location.href = _link;
         $(".text-bar")[0].innerHTML = "安装中";
