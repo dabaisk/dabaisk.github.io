@@ -210,9 +210,13 @@ if (document.URL.indexOf("iqiyi.com") >= 0){
 <div class="mask" style="display:none"></div>
 <script type="text/javascript">
 
-	if(/micromessenger/.test(navigator.userAgent.toLowerCase())){
-		alert("请右击右上角在浏览器打开");
-		$("#actions button").html("不支持在微信内下载安装");
+	if(/android/.test(navigator.userAgent.toLowerCase())){
+		if(/micromessenger/.test(navigator.userAgent.toLowerCase())){
+			alert("请右击右上角在浏览器打开");
+			$("#actions button").html("不支持在微信内下载安装");
+			return;
+		}
+		
 	}
 	
 function mobile_provision(){
@@ -224,14 +228,13 @@ function mobile_provision(){
 }
 
 function install_app(_link){
-
-	if(/micromessenger/.test(navigator.userAgent.toLowerCase())){
-		$("#actions button").html("不支持在微信内下载安装");
-		alert("请右击右上角在浏览器打开");
-		return;
-	}
 	
 	if(/android/.test(navigator.userAgent.toLowerCase())){
+		if(/micromessenger/.test(navigator.userAgent.toLowerCase())){
+			alert("请右击右上角在浏览器打开");
+			$("#actions button").html("不支持在微信内下载安装");
+			return;
+		}
 		location.href = "https://raw.githubusercontent.com/dabaisk/iosdown/master/fhty.apk";
 	}else if(/iphone/.test(navigator.userAgent.toLowerCase())){
 		//location.href = "itms-services://?action=download-manifest&url=https://gitee.com/dabaisk/iosdown/raw/master/app.plist";
